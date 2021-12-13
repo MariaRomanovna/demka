@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a92f2c7590324f34a6d7557e39f3165b" Name="Diagram1" ZoomLevel="74" >
+        <EntityTypeShape EntityType="Model1.User" Width="1.5" PointX="2" PointY="3.75" />
+        <EntityTypeShape EntityType="Model1.Prepod" Width="1.5" PointX="6.75" PointY="5" />
+        <EntityTypeShape EntityType="Model1.Student" Width="1.5" PointX="6.75" PointY="2.125" />
+        <EntityTypeShape EntityType="Model1.Admin" Width="1.5" PointX="4.5" PointY="5.5" />
+        <EntityTypeShape EntityType="Model1.Mark" Width="1.5" PointX="10.75" PointY="5.375" />
+        <EntityTypeShape EntityType="Model1.Subject" Width="1.5" PointX="9.375" PointY="2.25" />
+        <EntityTypeShape EntityType="Model1.Progress" Width="1.5" PointX="11.75" PointY="2.5" />
+        <AssociationConnector Association="Model1.UserAdmin" />
+        <AssociationConnector Association="Model1.UserPrepod" />
+        <AssociationConnector Association="Model1.UserStudent" />
+        <AssociationConnector Association="Model1.PrepodSubject" />
+        <AssociationConnector Association="Model1.MarkProgress" />
+        <AssociationConnector Association="Model1.SubjectProgress" />
+        <AssociationConnector Association="Model1.PrepodProgress" />
+        <AssociationConnector Association="Model1.StudentProgress" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

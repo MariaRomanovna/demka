@@ -1,0 +1,150 @@
+﻿<Window x:Class="demka.StudentList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:demka"
+        mc:Ignorable="d"
+        Title="StudentList" Height="650" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="120"/>
+            <RowDefinition/>
+            <RowDefinition
+                Height="60"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"> 
+        <WrapPanel Grid.Row="0">
+            <TextBlock Text="Просмотр списка студентов"
+                       
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Margin="20 15 0 0"></TextBlock>
+            <Button HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Height="30"
+                    Width="250"
+                    Content="Вернуться в меню"
+                    FontSize="18"
+                    Margin="250 15 0 0"
+                    Click="GoBack_Click">
+                
+            </Button>
+        </WrapPanel>
+            <Border BorderBrush="Black"
+                    BorderThickness="2">
+            <WrapPanel Grid.Row="0" 
+                   >
+             
+            <TextBlock Text="Введите группу"
+                       
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Margin="20 15 0 0"></TextBlock>
+                <TextBox Height="30"
+                         Width="100"
+                         FontSize="16"
+                         Margin="5 15 0 5"
+                         x:Name="NGroup">
+                    
+                </TextBox>
+                <Button HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Height="30"
+                    Width="250"
+                    Content="Вывод студентов"
+                    FontSize="18"
+                    Margin="250 15 0 5"
+                        Click="ShowStudent_Click">
+
+                </Button>
+            </WrapPanel>
+            </Border>
+        </StackPanel>
+        <WrapPanel Grid.Row="1">
+            <StackPanel
+                Width="400"
+                Height="auto">
+                <DataGrid x:Name="DGridStudent">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ФИО студента"
+                                            Binding="{Binding FIO}">
+                            
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Группа"
+                                            Binding="{Binding NumberGroup}">
+
+                        </DataGridTextColumn>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Width="150"
+                                            Height="20"
+                                            FontSize="14">
+                                        Подробнее
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock FontSize="16"
+                           FontWeight="Medium"
+                           Margin="10 0 0 0">
+                    Фотография
+                </TextBlock>
+                <Image Height="250"
+                       Width="250"
+                       Margin="10 10 0 0"
+                      Source="{Binding Photo}">
+                                        
+                </Image>
+                <TextBlock FontSize="16"
+                           FontWeight="Medium"
+                           Margin="10 0 0 0">
+                    ФИО
+                </TextBlock>
+                <TextBox Text="{Binding FIO}"
+                         Height="20"
+                         Width="300"
+                         FontSize="14">
+                    
+                </TextBox>
+                <TextBlock FontSize="16"
+                           FontWeight="Medium"
+                           Margin="10 0 0 0">
+                    Номер Группы
+                </TextBlock>
+                <TextBox Text="{Binding NumberGroup}"
+                         Height="20"
+                         Width="300"
+                         FontSize="14">
+
+                </TextBox>
+                <TextBlock FontSize="16"
+                           FontWeight="Medium"
+                           Margin="10 0 0 0">
+                    О себе
+                </TextBlock>
+                <TextBox Text="{Binding PersonalData}"
+                         Height="20"
+                         Width="300"
+                         FontSize="14">
+
+                </TextBox>
+            </StackPanel>
+        </WrapPanel>
+        <WrapPanel Grid.Row="2">
+            <Button
+                Height="60"
+                Width="390"
+                Margin="5 0 5 0">Сохранить изменения</Button>
+            <Button  Height="60"
+                Width="390"
+                     Margin="3 0 0 0">Написать студенту</Button>
+        </WrapPanel>
+    </Grid>
+</Window>

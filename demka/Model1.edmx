@@ -1,0 +1,519 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="UserSet" EntityType="Model1.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PrepodSet" EntityType="Model1.Store.PrepodSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StudentSet" EntityType="Model1.Store.StudentSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AdminSet" EntityType="Model1.Store.AdminSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MarkSet" EntityType="Model1.Store.MarkSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SubjectSet" EntityType="Model1.Store.SubjectSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProgressSet" EntityType="Model1.Store.ProgressSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserAdmin" Association="Model1.Store.UserAdmin">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Admin" EntitySet="AdminSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserPrepod" Association="Model1.Store.UserPrepod">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Prepod" EntitySet="PrepodSet" />
+    </AssociationSet>
+    <AssociationSet Name="UserStudent" Association="Model1.Store.UserStudent">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Student" EntitySet="StudentSet" />
+    </AssociationSet>
+    <AssociationSet Name="PrepodSubject" Association="Model1.Store.PrepodSubject">
+      <End Role="Prepod" EntitySet="PrepodSet" />
+      <End Role="Subject" EntitySet="SubjectSet" />
+    </AssociationSet>
+    <AssociationSet Name="MarkProgress" Association="Model1.Store.MarkProgress">
+      <End Role="Mark" EntitySet="MarkSet" />
+      <End Role="Progress" EntitySet="ProgressSet" />
+    </AssociationSet>
+    <AssociationSet Name="SubjectProgress" Association="Model1.Store.SubjectProgress">
+      <End Role="Subject" EntitySet="SubjectSet" />
+      <End Role="Progress" EntitySet="ProgressSet" />
+    </AssociationSet>
+    <AssociationSet Name="PrepodProgress" Association="Model1.Store.PrepodProgress">
+      <End Role="Prepod" EntitySet="PrepodSet" />
+      <End Role="Progress" EntitySet="ProgressSet" />
+    </AssociationSet>
+    <AssociationSet Name="StudentProgress" Association="Model1.Store.StudentProgress">
+      <End Role="Student" EntitySet="StudentSet" />
+      <End Role="Progress" EntitySet="ProgressSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Role" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PrepodSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIO" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Position" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PersonalData" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StudentSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIO" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NumberGroup" Type="int" Nullable="false" />
+    <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PersonalData" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AdminSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIO" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PersonalData" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MarkSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubjectSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Prepod_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProgressSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Data" Type="datetime" Nullable="false" />
+    <Property Name="Mark_Id" Type="int" Nullable="false" />
+    <Property Name="Subject_Id" Type="int" Nullable="false" />
+    <Property Name="Prepod_Id" Type="int" Nullable="false" />
+    <Property Name="Student_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="UserAdmin">
+    <End Role="User" Type="Model1.Store.UserSet" Multiplicity="1" />
+    <End Role="Admin" Type="Model1.Store.AdminSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Admin">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserPrepod">
+    <End Role="User" Type="Model1.Store.UserSet" Multiplicity="1" />
+    <End Role="Prepod" Type="Model1.Store.PrepodSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Prepod">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserStudent">
+    <End Role="User" Type="Model1.Store.UserSet" Multiplicity="1" />
+    <End Role="Student" Type="Model1.Store.StudentSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PrepodSubject">
+    <End Role="Prepod" Type="Model1.Store.PrepodSet" Multiplicity="1" />
+    <End Role="Subject" Type="Model1.Store.SubjectSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prepod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subject">
+        <PropertyRef Name="Prepod_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MarkProgress">
+    <End Role="Mark" Type="Model1.Store.MarkSet" Multiplicity="1" />
+    <End Role="Progress" Type="Model1.Store.ProgressSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mark">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Progress">
+        <PropertyRef Name="Mark_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SubjectProgress">
+    <End Role="Subject" Type="Model1.Store.SubjectSet" Multiplicity="1" />
+    <End Role="Progress" Type="Model1.Store.ProgressSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Progress">
+        <PropertyRef Name="Subject_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PrepodProgress">
+    <End Role="Prepod" Type="Model1.Store.PrepodSet" Multiplicity="1" />
+    <End Role="Progress" Type="Model1.Store.ProgressSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prepod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Progress">
+        <PropertyRef Name="Prepod_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StudentProgress">
+    <End Role="Student" Type="Model1.Store.StudentSet" Multiplicity="1" />
+    <End Role="Progress" Type="Model1.Store.ProgressSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Progress">
+        <PropertyRef Name="Student_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserSet" EntityType="Model1.User" />
+          <EntitySet Name="PrepodSet" EntityType="Model1.Prepod" />
+          <EntitySet Name="StudentSet" EntityType="Model1.Student" />
+          <EntitySet Name="AdminSet" EntityType="Model1.Admin" />
+          <EntitySet Name="MarkSet" EntityType="Model1.Mark" />
+          <EntitySet Name="SubjectSet" EntityType="Model1.Subject" />
+          <EntitySet Name="ProgressSet" EntityType="Model1.Progress" />
+          <AssociationSet Name="UserAdmin" Association="Model1.UserAdmin">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Admin" EntitySet="AdminSet" />
+          </AssociationSet>
+          <AssociationSet Name="UserPrepod" Association="Model1.UserPrepod">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Prepod" EntitySet="PrepodSet" />
+          </AssociationSet>
+          <AssociationSet Name="UserStudent" Association="Model1.UserStudent">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Student" EntitySet="StudentSet" />
+          </AssociationSet>
+          <AssociationSet Name="PrepodSubject" Association="Model1.PrepodSubject">
+            <End Role="Prepod" EntitySet="PrepodSet" />
+            <End Role="Subject" EntitySet="SubjectSet" />
+          </AssociationSet>
+          <AssociationSet Name="MarkProgress" Association="Model1.MarkProgress">
+            <End Role="Mark" EntitySet="MarkSet" />
+            <End Role="Progress" EntitySet="ProgressSet" />
+          </AssociationSet>
+          <AssociationSet Name="SubjectProgress" Association="Model1.SubjectProgress">
+            <End Role="Subject" EntitySet="SubjectSet" />
+            <End Role="Progress" EntitySet="ProgressSet" />
+          </AssociationSet>
+          <AssociationSet Name="PrepodProgress" Association="Model1.PrepodProgress">
+            <End Role="Prepod" EntitySet="PrepodSet" />
+            <End Role="Progress" EntitySet="ProgressSet" />
+          </AssociationSet>
+          <AssociationSet Name="StudentProgress" Association="Model1.StudentProgress">
+            <End Role="Student" EntitySet="StudentSet" />
+            <End Role="Progress" EntitySet="ProgressSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="Role" Type="String" Nullable="false" />
+          <NavigationProperty Name="Admin" Relationship="Model1.UserAdmin" FromRole="User" ToRole="Admin" />
+          <NavigationProperty Name="Prepod" Relationship="Model1.UserPrepod" FromRole="User" ToRole="Prepod" />
+          <NavigationProperty Name="Student" Relationship="Model1.UserStudent" FromRole="User" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Prepod">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" Nullable="false" />
+          <Property Name="Position" Type="String" Nullable="false" />
+          <Property Name="PersonalData" Type="String" Nullable="false" />
+          <Property Name="Photo" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model1.UserPrepod" FromRole="Prepod" ToRole="User" />
+          <NavigationProperty Name="Subject" Relationship="Model1.PrepodSubject" FromRole="Prepod" ToRole="Subject" />
+          <NavigationProperty Name="Progress" Relationship="Model1.PrepodProgress" FromRole="Prepod" ToRole="Progress" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" Nullable="false" />
+          <Property Name="NumberGroup" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="String" Nullable="false" />
+          <Property Name="PersonalData" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model1.UserStudent" FromRole="Student" ToRole="User" />
+          <NavigationProperty Name="Progress" Relationship="Model1.StudentProgress" FromRole="Student" ToRole="Progress" />
+        </EntityType>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" Nullable="false" />
+          <Property Name="PersonalData" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model1.UserAdmin" FromRole="Admin" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Mark">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Progress" Relationship="Model1.MarkProgress" FromRole="Mark" ToRole="Progress" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Prepod" Relationship="Model1.PrepodSubject" FromRole="Subject" ToRole="Prepod" />
+          <NavigationProperty Name="Progress" Relationship="Model1.SubjectProgress" FromRole="Subject" ToRole="Progress" />
+        </EntityType>
+        <EntityType Name="Progress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Data" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Mark" Relationship="Model1.MarkProgress" FromRole="Progress" ToRole="Mark" />
+          <NavigationProperty Name="Subject" Relationship="Model1.SubjectProgress" FromRole="Progress" ToRole="Subject" />
+          <NavigationProperty Name="Prepod" Relationship="Model1.PrepodProgress" FromRole="Progress" ToRole="Prepod" />
+          <NavigationProperty Name="Student" Relationship="Model1.StudentProgress" FromRole="Progress" ToRole="Student" />
+        </EntityType>
+        <Association Name="UserAdmin">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.Admin" Role="Admin" Multiplicity="*" />
+        </Association>
+        <Association Name="UserPrepod">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.Prepod" Role="Prepod" Multiplicity="*" />
+        </Association>
+        <Association Name="UserStudent">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.Student" Role="Student" Multiplicity="*" />
+        </Association>
+        <Association Name="PrepodSubject">
+          <End Type="Model1.Prepod" Role="Prepod" Multiplicity="1" />
+          <End Type="Model1.Subject" Role="Subject" Multiplicity="*" />
+        </Association>
+        <Association Name="MarkProgress">
+          <End Type="Model1.Mark" Role="Mark" Multiplicity="1" />
+          <End Type="Model1.Progress" Role="Progress" Multiplicity="*" />
+        </Association>
+        <Association Name="SubjectProgress">
+          <End Type="Model1.Subject" Role="Subject" Multiplicity="1" />
+          <End Type="Model1.Progress" Role="Progress" Multiplicity="*" />
+        </Association>
+        <Association Name="PrepodProgress">
+          <End Type="Model1.Prepod" Role="Prepod" Multiplicity="1" />
+          <End Type="Model1.Progress" Role="Progress" Multiplicity="*" />
+        </Association>
+        <Association Name="StudentProgress">
+          <End Type="Model1.Student" Role="Student" Multiplicity="1" />
+          <End Type="Model1.Progress" Role="Progress" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="UserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.User)">
+        <MappingFragment StoreEntitySet="UserSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PrepodSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Prepod)">
+        <MappingFragment StoreEntitySet="PrepodSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="PersonalData" ColumnName="PersonalData" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Student)">
+        <MappingFragment StoreEntitySet="StudentSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="NumberGroup" ColumnName="NumberGroup" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="PersonalData" ColumnName="PersonalData" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Admin)">
+        <MappingFragment StoreEntitySet="AdminSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="PersonalData" ColumnName="PersonalData" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MarkSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Mark)">
+        <MappingFragment StoreEntitySet="MarkSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubjectSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Subject)">
+        <MappingFragment StoreEntitySet="SubjectSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProgressSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Progress)">
+        <MappingFragment StoreEntitySet="ProgressSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserAdmin" TypeName="Model1.UserAdmin" StoreEntitySet="AdminSet">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Admin">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserPrepod" TypeName="Model1.UserPrepod" StoreEntitySet="PrepodSet">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Prepod">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserStudent" TypeName="Model1.UserStudent" StoreEntitySet="StudentSet">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Student">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PrepodSubject" TypeName="Model1.PrepodSubject" StoreEntitySet="SubjectSet">
+      <EndProperty Name="Prepod">
+        <ScalarProperty Name="Id" ColumnName="Prepod_Id" />
+      </EndProperty>
+      <EndProperty Name="Subject">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MarkProgress" TypeName="Model1.MarkProgress" StoreEntitySet="ProgressSet">
+      <EndProperty Name="Mark">
+        <ScalarProperty Name="Id" ColumnName="Mark_Id" />
+      </EndProperty>
+      <EndProperty Name="Progress">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SubjectProgress" TypeName="Model1.SubjectProgress" StoreEntitySet="ProgressSet">
+      <EndProperty Name="Subject">
+        <ScalarProperty Name="Id" ColumnName="Subject_Id" />
+      </EndProperty>
+      <EndProperty Name="Progress">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="PrepodProgress" TypeName="Model1.PrepodProgress" StoreEntitySet="ProgressSet">
+      <EndProperty Name="Prepod">
+        <ScalarProperty Name="Id" ColumnName="Prepod_Id" />
+      </EndProperty>
+      <EndProperty Name="Progress">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="StudentProgress" TypeName="Model1.StudentProgress" StoreEntitySet="ProgressSet">
+      <EndProperty Name="Student">
+        <ScalarProperty Name="Id" ColumnName="Student_Id" />
+      </EndProperty>
+      <EndProperty Name="Progress">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
